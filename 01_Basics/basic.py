@@ -104,5 +104,66 @@ import torch.nn.init as init
 x1 = init.uniform(torch.FloatTensor(3,4),a=0,b=15) # a ~ b 까지의 랜덤수로 init
 x2 = init.normal(torch.FloatTensor(3,4),std=0.2)
 x3 = init.constant(torch.FloatTensor(3,4),3.1415)
-print '12.1 ]', x1, x2, x3
+print '12.1] ', x1, x2, x3
 
+
+# 13. Arithmetic operations
+x1 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x2 = torch.FloatTensor([[1,2,3],[4,5,6]])
+add = torch.add(x1,x2) # torch.add()
+print '13.1] ', x1, x2, add, x1+x2, x1-x2
+
+x1 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x2 = torch.add(x1,10) # torch.add() broadcasting
+print '13.2] ', x1, x2, x1+10, x2-10
+
+x1 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x2 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x3 = torch.mul(x1,x2) # torch.mul() -> size better match
+print '13.3] ', x3
+
+x1 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x2 = x1*10 # torch.mul() -> broadcasting
+print '13.4] ', x2
+
+x1 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x2 = torch.FloatTensor([[1,2,3],[4,5,6]])
+x3 = torch.div(x1,x2) # torch.div() -> size better match
+print '13.5] ', x3
+
+x1 = torch.FloatTensor([[1,2,3],[4,5,6]])
+print '13.6] ', x1/5 # torch.div() -> broadcasting
+
+
+# 14. Other math operation
+x1 = torch.FloatTensor(3,4)
+print '14.1] ', x1, torch.pow(x1, 2), x1**2 # torch.pow(input,exponent)
+
+x1 = torch.FloatTensor(3,4)
+print '14.2] ', x1, torch.exp(x1) # torch.exp(tensor,out=None
+
+x1 = torch.FloatTensor(3,4)
+print '14.3] ', x1, torch.log(x1)
+
+
+# 15. Matrix operation
+x1 = torch.FloatTensor(3,4)
+x2 = torch.FloatTensor(4,5)
+print '15.1] ', x1, x2, torch.mm(x1,x2) # torch.mm(mat1, mat2) -> matrix multiplication
+
+x1 = torch.FloatTensor(10,3,4)
+x2 = torch.FloatTensor(10,4,5)
+print '15.2] ', x1, x2, torch.bmm(x1,x2).size() # torch.bmm(batch1, batch2) -> batch matrix multiplication
+
+x1 = torch.FloatTensor(3,4)
+x2 = torch.FloatTensor(3,4)
+print '15.3] ', x1, x2, torch.dot(x1,x2)  # torch.dot(tensor1,tensor2) -> dot product of two tensor
+
+x1 = torch.FloatTensor(3,4)
+print '15.4] ', x1, x1.t() # torch.t(matrix) -> transposed matrix
+
+x1 = torch.FloatTensor(10,3,4)
+print '15.5] ', x1.size(), torch.transpose(x1,1,2).size(), x1.transpose(1,2).size() # torch.transpose(input,dim0,dim1) -> transposed matrix
+
+x1 = torch.FloatTensor(4,4)
+print '15.6] ', x1,torch.eig(x1,True) # torch.eig(a,eigenvectors=False) -> eigen_value, eigen_vector
